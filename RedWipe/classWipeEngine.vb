@@ -27,6 +27,8 @@ Public Class classWipeEngine
 
         If Cancel = True Then handleCanceled()
 
+
+
         'First we will handle the comments.
         mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Erasing " & TotalComments & " comments..." & vbCrLf)
         'Set Current time. This will be used to est. the time remaining.
@@ -38,6 +40,9 @@ Public Class classWipeEngine
             comment = redReddit.GetMe.GetComments.ElementAt(y)
             'comment = redReddit.User.Comments.ElementAt(y)
 
+            '#Test area to export data
+
+            '#
 
             currentcomment = comment.Body.ToString
 
