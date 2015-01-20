@@ -1,5 +1,6 @@
 ﻿Public Class Form1
     Public RED As RedditSharp.Reddit
+    Public REDAGENT As RedditSharp.WebAgent
     Public USER As RedditSharp.Things.AuthenticatedUser
 
     Delegate Sub SetTextCallback(obj As Object, [text] As String)
@@ -83,6 +84,7 @@
         Me.Location = New Point(x / 2, y / 2)
         'Declares RED as a new instance of RedditSharp.Reddit
         Cancel = False
+        RedditSharp.WebAgent.UserAgent = "RedWipe " & Application.ProductVersion
         RED = New RedditSharp.Reddit
         RED.RateLimit = RedditSharp.WebAgent.RateLimitMode.Burst
     End Sub

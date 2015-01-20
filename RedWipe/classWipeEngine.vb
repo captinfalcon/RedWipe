@@ -22,11 +22,14 @@ Public Class classWipeEngine
         Dim scrambled As String
         Dim currentpost As String
         Dim currentcomment As String
-        Dim post As RedditSharp.Things.Post
-        Dim comment As RedditSharp.Things.Comment
+        Dim post As RedditSharp.Things.Post = Nothing
+        Dim comment As RedditSharp.Things.Comment = Nothing
 
         If Cancel = True Then handleCanceled()
 
+        'Creat Export Class
+        Dim export As ExportReddit
+        export = New ExportReddit
 
 
         'First we will handle the comments.
@@ -41,7 +44,10 @@ Public Class classWipeEngine
             'comment = redReddit.User.Comments.ElementAt(y)
 
             '#Test area to export data
-
+            'Save Data if this has been selected.
+            'This will be moved into an select case or IF statement...
+            'For testing only this has been turned on...
+            export.SaveData(redUser, post, comment)
             '#
 
             currentcomment = comment.Body.ToString
@@ -56,7 +62,8 @@ Public Class classWipeEngine
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Comment: " & y & "     Deleted." & vbCrLf)
             'Show time elapsed
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Time of Completion: " & calculateTimeRemaining(startTime, (TotalComments - y), TotalPosts + TotalComments) & vbCrLf & vbCrLf)
-            'Refresf the console so we can see the updates.
+            
+
             If Cancel = True Then handleCanceled()
         Next
 
