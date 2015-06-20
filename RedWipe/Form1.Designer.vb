@@ -36,8 +36,11 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.OptionsBox = New System.Windows.Forms.GroupBox()
+        Me.OptionTest = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.OptionsBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnStop
@@ -45,7 +48,7 @@ Partial Class Form1
         Me.btnStop.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnStop.Enabled = False
-        Me.btnStop.Location = New System.Drawing.Point(326, 220)
+        Me.btnStop.Location = New System.Drawing.Point(326, 298)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(234, 38)
         Me.btnStop.TabIndex = 15
@@ -57,7 +60,7 @@ Partial Class Form1
         Me.btnWipe.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnWipe.Enabled = False
-        Me.btnWipe.Location = New System.Drawing.Point(12, 220)
+        Me.btnWipe.Location = New System.Drawing.Point(12, 298)
         Me.btnWipe.Name = "btnWipe"
         Me.btnWipe.Size = New System.Drawing.Size(309, 38)
         Me.btnWipe.TabIndex = 14
@@ -70,11 +73,11 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtconsole.Enabled = False
         Me.txtconsole.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtconsole.Location = New System.Drawing.Point(12, 270)
+        Me.txtconsole.Location = New System.Drawing.Point(12, 342)
         Me.txtconsole.Multiline = True
         Me.txtconsole.Name = "txtconsole"
         Me.txtconsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtconsole.Size = New System.Drawing.Size(549, 305)
+        Me.txtconsole.Size = New System.Drawing.Size(549, 311)
         Me.txtconsole.TabIndex = 13
         '
         'Label2
@@ -108,7 +111,7 @@ Partial Class Form1
         Me.txtPWD2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPWD2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPWD2.Location = New System.Drawing.Point(12, 188)
+        Me.txtPWD2.Location = New System.Drawing.Point(12, 189)
         Me.txtPWD2.Name = "txtPWD2"
         Me.txtPWD2.Size = New System.Drawing.Size(440, 26)
         Me.txtPWD2.TabIndex = 10
@@ -119,7 +122,7 @@ Partial Class Form1
         Me.txtPWD.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPWD.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPWD.Location = New System.Drawing.Point(12, 162)
+        Me.txtPWD.Location = New System.Drawing.Point(12, 163)
         Me.txtPWD.Name = "txtPWD"
         Me.txtPWD.Size = New System.Drawing.Size(440, 26)
         Me.txtPWD.TabIndex = 9
@@ -130,7 +133,7 @@ Partial Class Form1
         Me.txtUSER.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUSER.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUSER.Location = New System.Drawing.Point(12, 111)
+        Me.txtUSER.Location = New System.Drawing.Point(12, 112)
         Me.txtUSER.Name = "txtUSER"
         Me.txtUSER.Size = New System.Drawing.Size(549, 26)
         Me.txtUSER.TabIndex = 8
@@ -140,7 +143,7 @@ Partial Class Form1
         '
         Me.Button3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button3.Location = New System.Drawing.Point(458, 162)
+        Me.Button3.Location = New System.Drawing.Point(458, 163)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(102, 52)
         Me.Button3.TabIndex = 16
@@ -184,12 +187,37 @@ Partial Class Form1
         Me.Label4.Text = "Bitcoin Donate:"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'OptionsBox
+        '
+        Me.OptionsBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OptionsBox.Controls.Add(Me.OptionTest)
+        Me.OptionsBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OptionsBox.ForeColor = System.Drawing.Color.White
+        Me.OptionsBox.Location = New System.Drawing.Point(12, 221)
+        Me.OptionsBox.Name = "OptionsBox"
+        Me.OptionsBox.Size = New System.Drawing.Size(549, 71)
+        Me.OptionsBox.TabIndex = 22
+        Me.OptionsBox.TabStop = False
+        Me.OptionsBox.Text = "Options"
+        '
+        'OptionTest
+        '
+        Me.OptionTest.AutoSize = True
+        Me.OptionTest.Location = New System.Drawing.Point(15, 19)
+        Me.OptionTest.Name = "OptionTest"
+        Me.OptionTest.Size = New System.Drawing.Size(165, 17)
+        Me.OptionTest.TabIndex = 0
+        Me.OptionTest.Text = "Test Mode (No Deletion)"
+        Me.OptionTest.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Red
-        Me.ClientSize = New System.Drawing.Size(572, 587)
+        Me.ClientSize = New System.Drawing.Size(572, 665)
+        Me.Controls.Add(Me.OptionsBox)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label2)
@@ -210,6 +238,8 @@ Partial Class Form1
         Me.Text = "Red Wipe - Erase Your Reddit History"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.OptionsBox.ResumeLayout(False)
+        Me.OptionsBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -227,4 +257,6 @@ Partial Class Form1
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents OptionsBox As System.Windows.Forms.GroupBox
+    Friend WithEvents OptionTest As System.Windows.Forms.CheckBox
 End Class

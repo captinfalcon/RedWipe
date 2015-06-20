@@ -3,6 +3,8 @@
     Public Cancel As Boolean
     Public threadWipeIT As Threading.Thread
     Public cryptoCount As Int32
+    Public TestMode As Boolean
+
 
     Function ShrinkText(ByVal str As String) As String
         If str.Length > 12 Then

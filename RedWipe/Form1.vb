@@ -111,8 +111,8 @@
             threadWipeIT = New Threading.Thread(AddressOf WI.WipeIT)
             'Run WipeIT
             threadWipeIT.Start()
-            'Old Way
-            'result = WipeIT(Me, RED, USER)
+            'Disable Options
+            OptionsBox.Enabled = False
         Else
             txtconsole.Text = "Current Process Canceled!" & vbCrLf
         End If
@@ -132,6 +132,7 @@
     End Sub
 
     Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+        OptionsBox.Enabled = False
         Cancel = True
     End Sub
 
@@ -145,5 +146,9 @@
         Dim f As Form3
         f = New Form3
         f.ShowDialog()
+    End Sub
+
+    Private Sub OptionTest_CheckedChanged(sender As Object, e As EventArgs) Handles OptionTest.CheckedChanged
+        TestMode = OptionTest.Checked
     End Sub
 End Class

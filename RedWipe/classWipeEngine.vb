@@ -12,11 +12,15 @@ Public Class classWipeEngine
     Function WipeIT() As Boolean
         'Send message to user, letting them know what is about to happen.
         mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Wipe engine loading..." & vbCrLf)
-        'Display Counts
-        mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "User has " & redUser.Posts.Count & " posts, and " & redUser.Comments.Count & " comments." & vbCrLf)
+        If TestMode = True Then
+            mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "TEST MODE ENABLED!! NOTHING WILL BE DELETED!!" & vbCrLf)
+        End If
         'Declare variables
-        Dim TotalPosts As Int32 = redUser.Posts.Count 'redUser.GetPosts.Count
-        Dim TotalComments As Int32 = redUser.Comments.Count 'redUser.GetComments.Count
+        Dim TotalPosts As Int32 = redUser.Posts.Count
+        Dim TotalComments As Int32 = redUser.Comments.Count
+        'Display Counts
+        mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "User has " & TotalPosts & " posts, and " & TotalComments & " comments." & vbCrLf)
+        '
         Dim x As Int32 ' Posts
         Dim y As Int32 ' Comments
         Dim scrambled As String
@@ -40,25 +44,28 @@ Public Class classWipeEngine
         For y = (TotalComments - 1) To 0 Step -1
             'Check for if the user canceled the operation
             If Cancel = True Then handleCanceled()
-            comment = redReddit.GetMe.GetComments.ElementAt(y)
-            'comment = redReddit.User.Comments.ElementAt(y)
+            'comment = redReddit.GetMe.GetComments.ElementAt(y)   '** Depreciated**
+            comment = redReddit.User.Comments.ElementAt(y)
 
             '#Test area to export data
             'Save Data if this has been selected.
             'This will be moved into an select case or IF statement...
             'For testing only this has been turned on...
-            export.SaveData(redUser, post, comment)
+            'export.SaveData(redUser, post, comment)
             '#
 
             currentcomment = comment.Body.ToString
 
             scrambled = GenerateRandomText(currentcomment)
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & ShrinkText(currentcomment) & "     Changed to-> " & ShrinkText(scrambled) & vbCrLf)
-            'Insert Code to edit comment
-            comment.EditText(scrambled)
 
+
+            'Insert Code to edit comment
             'Insert Code to delete comment.
-            comment.Remove()
+            If TestMode = False Then
+                comment.EditText(scrambled)
+                comment.Remove()
+            End If
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Comment: " & y & "     Deleted." & vbCrLf)
             'Show time elapsed
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Time of Completion: " & calculateTimeRemaining(startTime, (TotalComments - y), TotalPosts + TotalComments) & vbCrLf & vbCrLf)
@@ -85,15 +92,21 @@ Public Class classWipeEngine
             If currentpost <> "" Then
                 scrambled = GenerateRandomText(currentpost)
                 mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & ShrinkText(currentpost) & "     Changed to-> " & ShrinkText(scrambled) & vbCrLf)
-                'Insert Code to edit post
-                post.EditText(scrambled)
+                'Insert Code to edit post only if test mode is disabled
+                If TestMode = False Then
+                    post.EditText(scrambled)
+                Else
+                    '
+                End If
             Else
                 mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & ShrinkText(post.Url.ToString) & "     Will be deleted." & vbCrLf)
             End If
 
 
             'Insert Code to delete post.
-            post.Remove()
+            If TestMode = False Then
+                post.Remove()
+            End If
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Post: " & x & "     Deleted." & vbCrLf)
             'Show time elapsed
             mainForm.SetText(mainForm.txtconsole, mainForm.txtconsole.Text & "Time of Completion: " & calculateTimeRemaining(startTime, (TotalPosts - x) + TotalComments, TotalComments + TotalPosts) & vbCrLf & vbCrLf)
